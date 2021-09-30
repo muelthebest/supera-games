@@ -79,7 +79,7 @@ export function Home() {
                     <Search sx={{  }}>
                         <SearchIconWrapper>
                             <SearchIcon />
-                        </SearchIconWrapper>
+                          </SearchIconWrapper>
                         <StyledInputBase placeholder="Procurar ..." />
                     </Search>
                     <Box sx={{ flexGrow: 1 }} />
