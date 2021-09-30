@@ -9,6 +9,7 @@ import {
     Typography,
     InputBase,
     Icon,
+    Badge,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
@@ -54,10 +55,16 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
+const StyledBadge = styled(Badge)(({ theme }) => ({
+    "& .MuiBadge-badge": {
+        right: 18,
+    },
+}));
+
 export function Home() {
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
+            <AppBar position="static" color="transparent">
                 <Toolbar>
                     <Typography
                         variant="h6"
@@ -67,7 +74,9 @@ export function Home() {
                     >
                         SUPERA GAMES
                     </Typography>
-                    <Search>
+
+                    <Box sx={{ flexGrow: 1 }} />
+                    <Search sx={{  }}>
                         <SearchIconWrapper>
                             <SearchIcon />
                         </SearchIconWrapper>
@@ -75,7 +84,13 @@ export function Home() {
                     </Search>
                     <Box sx={{ flexGrow: 1 }} />
                     <IconButton color="primary">
-                        <Icon component={CartGame} fontSize="large" sx={{ width: 100 }} />
+                        <StyledBadge badgeContent={4} color="secondary" >
+                            <Icon
+                                component={CartGame}
+                                fontSize="large"
+                                sx={{ marginRight: 3 }}
+                            />
+                        </StyledBadge>
                     </IconButton>
                 </Toolbar>
             </AppBar>
