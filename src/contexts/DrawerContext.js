@@ -1,19 +1,17 @@
-import { createContext, useState } from "react"
+import { createContext, useState } from "react";
 
-
-export const DrawerContext = createContext({})
+export const DrawerContext = createContext({});
 
 export const DrawerProvider = (props) => {
     const [mobileOpen, setMobileOpen] = useState(false);
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
-      };
+    };
 
-    return(
+    return (
         <DrawerContext.Provider value={{ mobileOpen, handleDrawerToggle }}>
-        {props.children}
+            {props.children}
         </DrawerContext.Provider>
-    )
-
-}
+    );
+};
