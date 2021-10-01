@@ -1,4 +1,4 @@
-import { CartGame } from "../atoms/CartGames"
+import { CartGame } from "../atoms/CartGames";
 
 import {
     AppBar,
@@ -11,8 +11,10 @@ import {
     Badge,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import MenuIcon from '@mui/icons-material/Menu';
 
 import { styled, alpha } from "@mui/material/styles";
+import { useDrawerResponsive } from "../../hooks/useDrawerResponsive";
 
 const Search = styled("div")(({ theme }) => ({
     position: "relative",
@@ -61,10 +63,22 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 export function SuperaAppBar() {
+    const { handleDrawerToggle } = useDrawerResponsive();
+
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static" color="transparent">
                 <Toolbar>
+                    <IconButton
+                        color="inherit"
+                        aria-label="open drawer"
+                        edge="start"
+                        onClick={handleDrawerToggle}
+                        sx={{ mr: 2, display: { sm: "none" } }}
+                    >
+                        <MenuIcon />
+                    </IconButton>
+
                     <Typography
                         variant="h6"
                         noWrap
@@ -75,15 +89,15 @@ export function SuperaAppBar() {
                     </Typography>
 
                     <Box sx={{ flexGrow: 1 }} />
-                    <Search sx={{  }}>
+                    <Search sx={{}}>
                         <SearchIconWrapper>
                             <SearchIcon />
-                          </SearchIconWrapper>
+                        </SearchIconWrapper>
                         <StyledInputBase placeholder="Procurar ..." />
                     </Search>
                     <Box sx={{ flexGrow: 1 }} />
                     <IconButton color="primary">
-                        <StyledBadge badgeContent={4} color="secondary" >
+                        <StyledBadge badgeContent={4} color="secondary">
                             <Icon
                                 component={CartGame}
                                 fontSize="large"
