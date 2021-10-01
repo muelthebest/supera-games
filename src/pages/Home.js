@@ -1,11 +1,14 @@
 import { ResponsiveDrawer } from "../components/templates/ResponsiveDrawer";
 import { SuperaAppBar } from "../components/templates/SuperaAppBar";
+import { DrawerProvider } from "../contexts/DrawerContext";
 
 export function Home() {
     return (
         <>
-            <SuperaAppBar />
-            <ResponsiveDrawer />
+            <DrawerProvider>
+                <SuperaAppBar />
+                <ResponsiveDrawer />
+            </DrawerProvider>
         </>
     );
 }
