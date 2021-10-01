@@ -11,7 +11,7 @@ import {
     Badge,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import MenuIcon from '@mui/icons-material/Menu';
+import MenuIcon from "@mui/icons-material/Menu";
 
 import { styled, alpha } from "@mui/material/styles";
 import { useDrawerResponsive } from "../../hooks/useDrawerResponsive";
@@ -95,16 +95,12 @@ export function SuperaAppBar() {
                         </SearchIconWrapper>
                         <StyledInputBase placeholder="Procurar ..." />
                     </Search>
-                    <Box sx={{ flexGrow: 1 }} />
-                    <IconButton color="primary">
-                        <StyledBadge badgeContent={4} color="secondary">
-                            <Icon
-                                component={CartGame}
-                                fontSize="large"
-                                sx={{ marginRight: 3 }}
-                            />
-                        </StyledBadge>
+                    <Box sx={{ flexGrow: 1}} />
+                        <StyledBadge badgeContent={4} color="info" sx={{ marginTop: 3 }} >
+                    <IconButton color="primary" sx={{ marginRight: 2}}>
+                            <Icon component={CartGame} fontSize="large" />
                     </IconButton>
+                        </StyledBadge>
                 </Toolbar>
             </AppBar>
         </Box>
