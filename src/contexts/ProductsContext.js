@@ -18,7 +18,6 @@ export const ProductsProvider = (props) => {
                             style: "currency",
                             currency: "BRL",
                         }),
-                        nameFormatted: `${product.name.substring(0, 20)}... `
                     };
                 });
                 setProducts(productFormatted);
