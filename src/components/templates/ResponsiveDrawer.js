@@ -5,10 +5,9 @@ import Toolbar from "@mui/material/Toolbar";
 
 import { styled } from "@mui/material/styles";
 import { useDrawerResponsive } from "../../hooks/useDrawerResponsive";
-import { useProducts } from "../../hooks/useProducts";
-import { ImageGames } from "../atoms/ImageGames";
-import { Button, Grid, Paper, Typography } from "@mui/material";
-import { useCart } from "../../hooks/useCart";
+
+import { ProductsBox } from "../organism/ProductsBox";
+import { BoxGrow } from "../atoms/BoxGrow";
 
 const drawerWidth = 240;
 
@@ -16,35 +15,9 @@ const BoxDrawer = styled(Box)(({ theme }) => ({
     zIndex: -999,
 }));
 
-const GridContainer = styled(Grid)(({ theme }) => ({
-    padding: 0,
-    margin: 0,
-    width: "100%",
-}));
-
-const ProductPaper = styled(Paper)(({ theme }) => ({
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    width: "100%",
-    height: "100%",
-}));
-
-const Money = styled(Typography)(({ theme }) => ({
-    color: "green",
-    fontSize: 18,
-}));
-
 export function ResponsiveDrawer(props) {
     const { window } = props;
     const { mobileOpen, handleDrawerToggle } = useDrawerResponsive();
-    const { products } = useProducts();
-    const { addProduct } = useCart();
-
-    function handleAddProduct(productId){
-        addProduct(productId)
-    }
 
     const drawer = (
         <div>
@@ -95,44 +68,9 @@ export function ResponsiveDrawer(props) {
                     {drawer}
                 </Drawer>
             </BoxDrawer>
-            <Box
-                component="main"
-                sx={{
-                    flexGrow: 1,
-                    p: 3,
-                }}
-            >
-                <GridContainer container spacing={3}>
-                    {products.map((product) => (
-                        <Grid
-                            key={product.id}
-                            item
-                            
-                            lg={3}
-                            md={4}
-                            sm={6}
-                        >
-                            <ProductPaper elevation={3}
-                            sx={{
-                                paddingTop: 1.5,
-                                paddingBottom: 1.5
-                            }}>
-                                <ImageGames api={product} />
-                                <Typography
-                                    variant="overline"
-                                    color="HighlightText"
-                                >
-                                    {product.name}  
-                                </Typography>
-                                <Money variant="button" >{product.price}</Money>
-                                <Box sx={{ flexGrow: 1 }} />
-                                <Button sx={{width: "90%"}} variant="contained" color="success"
-                                onClick={() => handleAddProduct(product.id)} >Comprar</Button>
-                            </ProductPaper>
-                        </Grid>
-                    ))}
-                </GridContainer>
-            </Box>
+            <BoxGrow component="main" sx={{ p: 3 }}>
+                <ProductsBox />
+            </BoxGrow>
         </Box>
     );
 }
