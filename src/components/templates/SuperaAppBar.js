@@ -18,6 +18,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { styled, alpha } from "@mui/material/styles";
 import { useDrawerResponsive } from "../../hooks/useDrawerResponsive";
 import { useCart } from "../../hooks/useCart";
+import { BadgeCart } from "../organism/BadgeCart";
 
 const Search = styled("div")(({ theme }) => ({
     position: "relative",
@@ -59,17 +60,10 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
-const StyledBadge = styled(Badge)(({ theme }) => ({
-    "& .MuiBadge-badge": {
-        right: 18,
-    },
-}));
-
 export function SuperaAppBar() {
     const { handleDrawerToggle } = useDrawerResponsive();
     const { searchProduct } = useProducts();
     const { cart } = useCart();
-
 
     function handleSearchProduct(productName) {
         searchProduct(productName);
@@ -103,18 +97,19 @@ export function SuperaAppBar() {
                         <SearchIconWrapper>
                             <SearchIcon />
                         </SearchIconWrapper>
-                        <StyledInputBase placeholder="Procurar ..." onChange={(ev) => handleSearchProduct(ev.target.value)} />
+                        <StyledInputBase
+                            placeholder="Procurar ..."
+                            onChange={(ev) =>
+                                handleSearchProduct(ev.target.value)
+                            }
+                        />
                     </Search>
                     <Box sx={{ flexGrow: 1 }} />
-                    <StyledBadge
+                    <BadgeCart
                         badgeContent={cart.length}
                         color="info"
                         sx={{ marginTop: 3 }}
-                    >
-                        <IconButton color="primary" sx={{ marginRight: 2 }}>
-                            <Icon component={CartGame} fontSize="large" />
-                        </IconButton>
-                    </StyledBadge>
+                    />
                 </Toolbar>
             </AppBar>
         </Box>
