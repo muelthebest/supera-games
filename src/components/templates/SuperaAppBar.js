@@ -1,4 +1,3 @@
-import { CartGame } from "../atoms/CartGames";
 
 import { useProducts } from "../../hooks/useProducts";
 
@@ -8,18 +7,15 @@ import {
     Toolbar,
     IconButton,
     Typography,
-    InputBase,
-    Icon,
-    Badge,
+    Button,
 } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
 
-import { styled, alpha } from "@mui/material/styles";
 import { useDrawerResponsive } from "../../hooks/useDrawerResponsive";
 import { useCart } from "../../hooks/useCart";
 import { BadgeCart } from "../organism/BadgeCart";
 import { SearchProduct } from "../organism/SearchProduct";
+import { LogoButton } from "../organism/LogoButton";
 
 export function SuperaAppBar() {
     const { handleDrawerToggle } = useDrawerResponsive();
@@ -44,14 +40,7 @@ export function SuperaAppBar() {
                         <MenuIcon />
                     </IconButton>
 
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="div"
-                        sx={{ display: { xs: "none", sm: "block" } }}
-                    >
-                        SUPERA GAMES
-                    </Typography>
+                    <LogoButton />
 
                     <Box sx={{ flexGrow: 1 }} />
 
