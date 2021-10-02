@@ -1,5 +1,7 @@
 import { CartGame } from "../atoms/CartGames";
 
+import { useProducts } from "../../hooks/useProducts";
+
 import {
     AppBar,
     Box,
@@ -64,6 +66,11 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 export function SuperaAppBar() {
     const { handleDrawerToggle } = useDrawerResponsive();
+    const { searchProduct } = useProducts();
+
+    function handleSearchProduct(productName) {
+        searchProduct(productName);
+    }
 
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -93,14 +100,18 @@ export function SuperaAppBar() {
                         <SearchIconWrapper>
                             <SearchIcon />
                         </SearchIconWrapper>
-                        <StyledInputBase placeholder="Procurar ..." />
+                        <StyledInputBase placeholder="Procurar ..." onChange={(ev) => handleSearchProduct(ev.target.value)} />
                     </Search>
-                    <Box sx={{ flexGrow: 1}} />
-                        <StyledBadge badgeContent={4} color="info" sx={{ marginTop: 3 }} >
-                    <IconButton color="primary" sx={{ marginRight: 2}}>
+                    <Box sx={{ flexGrow: 1 }} />
+                    <StyledBadge
+                        badgeContent={4}
+                        color="info"
+                        sx={{ marginTop: 3 }}
+                    >
+                        <IconButton color="primary" sx={{ marginRight: 2 }}>
                             <Icon component={CartGame} fontSize="large" />
-                    </IconButton>
-                        </StyledBadge>
+                        </IconButton>
+                    </StyledBadge>
                 </Toolbar>
             </AppBar>
         </Box>
