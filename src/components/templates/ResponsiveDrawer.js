@@ -7,8 +7,8 @@ import { styled } from "@mui/material/styles";
 import { useDrawerResponsive } from "../../hooks/useDrawerResponsive";
 import { useProducts } from "../../hooks/useProducts";
 import { ImageGames } from "../atoms/ImageGames";
-import { Button, Grid, IconButton, Paper, Typography } from "@mui/material";
-import { AddShoppingCart } from "@mui/icons-material";
+import { Button, Grid, Paper, Typography } from "@mui/material";
+import { useCart } from "../../hooks/useCart";
 
 const drawerWidth = 240;
 
@@ -40,6 +40,11 @@ export function ResponsiveDrawer(props) {
     const { window } = props;
     const { mobileOpen, handleDrawerToggle } = useDrawerResponsive();
     const { products } = useProducts();
+    const { addProduct } = useCart();
+
+    function handleAddProduct(productId){
+        addProduct(productId)
+    }
 
     const drawer = (
         <div>
@@ -121,7 +126,8 @@ export function ResponsiveDrawer(props) {
                                 </Typography>
                                 <Money variant="button" >{product.price}</Money>
                                 <Box sx={{ flexGrow: 1 }} />
-                                <Button sx={{width: "90%"}} variant="contained" color="success">Comprar</Button>
+                                <Button sx={{width: "90%"}} variant="contained" color="success"
+                                onClick={() => handleAddProduct(product.id)} >Comprar</Button>
                             </ProductPaper>
                         </Grid>
                     ))}
