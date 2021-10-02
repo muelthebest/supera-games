@@ -8,6 +8,7 @@ import { BadgeCart } from "../organism/BadgeCart";
 import { SearchProduct } from "../organism/SearchProduct";
 import { LogoButton } from "../organism/LogoButton";
 import { MenuFilterMobile } from "../organism/MenuFilterMobile";
+import { BoxGrow } from "../atoms/BoxGrow";
 
 export function SuperaAppBar() {
     const { handleDrawerToggle } = useDrawerResponsive();
@@ -30,14 +31,14 @@ export function SuperaAppBar() {
 
                     <LogoButton />
 
-                    <Box sx={{ flexGrow: 1 }} />
+                    <BoxGrow />
 
                     <SearchProduct
                         placeholder="Procurar ..."
                         onChange={(ev) => handleSearchProduct(ev.target.value)}
                     />
 
-                    <Box sx={{ flexGrow: 1 }} />
+                    <BoxGrow />
 
                     <BadgeCart
                         badgeContent={cart.length}

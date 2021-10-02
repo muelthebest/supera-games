@@ -1,4 +1,4 @@
-import { ResponsiveDrawer } from "../components/templates/ResponsiveDrawer";
+import { MainContent } from "../components/templates/MainContent";
 import { SuperaAppBar } from "../components/templates/SuperaAppBar";
 import { CartProvider } from "../contexts/CartContext";
 import { DrawerProvider } from "../contexts/DrawerContext";
@@ -11,7 +11,7 @@ export function Home() {
                 <CartProvider>
                     <DrawerProvider>
                         <SuperaAppBar />
-                        <ResponsiveDrawer />
+                        <MainContent />
                     </DrawerProvider>
                 </CartProvider>
             </ProductsProvider>
