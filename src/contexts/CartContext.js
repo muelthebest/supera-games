@@ -16,8 +16,6 @@ export const CartProvider = (props) => {
         return [];
     });
 
-    const { products } = useProducts();
-
     async function addProduct(productId) {
         try {
             const { data: products } = await axios(
