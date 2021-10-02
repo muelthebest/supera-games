@@ -1,21 +1,13 @@
-
 import { useProducts } from "../../hooks/useProducts";
 
-import {
-    AppBar,
-    Box,
-    Toolbar,
-    IconButton,
-    Typography,
-    Button,
-} from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
+import { AppBar, Box, Toolbar } from "@mui/material";
 
 import { useDrawerResponsive } from "../../hooks/useDrawerResponsive";
 import { useCart } from "../../hooks/useCart";
 import { BadgeCart } from "../organism/BadgeCart";
 import { SearchProduct } from "../organism/SearchProduct";
 import { LogoButton } from "../organism/LogoButton";
+import { MenuFilterMobile } from "../organism/MenuFilterMobile";
 
 export function SuperaAppBar() {
     const { handleDrawerToggle } = useDrawerResponsive();
@@ -30,15 +22,11 @@ export function SuperaAppBar() {
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static" color="transparent">
                 <Toolbar>
-                    <IconButton
+                    <MenuFilterMobile
                         color="inherit"
-                        aria-label="open drawer"
                         edge="start"
                         onClick={handleDrawerToggle}
-                        sx={{ mr: 2, display: { sm: "none" } }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
+                    />
 
                     <LogoButton />
 
