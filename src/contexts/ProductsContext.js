@@ -1,12 +1,5 @@
 import axios from "axios";
-import {
-    createContext,
-    memo,
-    useCallback,
-    useEffect,
-    useMemo,
-    useState,
-} from "react";
+import { createContext, useState } from "react";
 import { useQuery } from "react-query";
 import { CircularIndeterminate } from "../components/molecules/CircularIndeterminate";
 
@@ -16,7 +9,7 @@ export const ProductsProvider = (props) => {
     const [products, setProducts] = useState([]);
     const [temporary, setTemporary] = useState([]);
 
-    const { data, error, isLoading } = useQuery(
+    const { error, isLoading } = useQuery(
         "products",
         () => {
             return axios("http://localhost:3001/products").then((response) => {

@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { createContext, useState } from "react";
-
-import { useProducts } from "../hooks/useProducts";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const CartContext = createContext({});
 
@@ -27,8 +27,13 @@ export const CartProvider = (props) => {
                 "@superaGames:cart",
                 JSON.stringify([...cart, products])
             );
+            toast.success("Item adicionado ao carrinho!", {
+                position: toast.POSITION.TOP_LEFT,
+            });
         } catch (e) {
-            console.log("Ocorreu um erro, tente novamente!");
+            toast.error("Ocorreu um erro, tente novamente!", {
+                position: toast.POSITION.TOP_LEFT,
+            });
         }
     }
 
