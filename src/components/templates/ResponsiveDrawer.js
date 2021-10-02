@@ -7,8 +7,8 @@ import { styled } from "@mui/material/styles";
 import { useDrawerResponsive } from "../../hooks/useDrawerResponsive";
 import { useProducts } from "../../hooks/useProducts";
 import { ImageGames } from "../atoms/ImageGames";
-import { Grid, IconButton, Paper, Typography } from "@mui/material";
-import { AddShoppingCart } from "@mui/icons-material";
+import { Button, Grid, Paper, Typography } from "@mui/material";
+import { useCart } from "../../hooks/useCart";
 
 const drawerWidth = 240;
 
@@ -31,12 +31,6 @@ const ProductPaper = styled(Paper)(({ theme }) => ({
     height: "100%",
 }));
 
-const MoneyDiv = styled(Box)(({theme}) => ({
-    display: "flex",
-    flexDirection: "row",
-    
-}))
-
 const Money = styled(Typography)(({ theme }) => ({
     color: "green",
     fontSize: 18,
@@ -46,6 +40,11 @@ export function ResponsiveDrawer(props) {
     const { window } = props;
     const { mobileOpen, handleDrawerToggle } = useDrawerResponsive();
     const { products } = useProducts();
+    const { addProduct } = useCart();
+
+    function handleAddProduct(productId){
+        addProduct(productId)
+    }
 
     const drawer = (
         <div>
@@ -106,7 +105,6 @@ export function ResponsiveDrawer(props) {
                 <GridContainer container spacing={3}>
                     {products.map((product) => (
                         <Grid
-                        
                             key={product.id}
                             item
                             
@@ -116,7 +114,8 @@ export function ResponsiveDrawer(props) {
                         >
                             <ProductPaper elevation={3}
                             sx={{
-                                paddingTop: 1.5
+                                paddingTop: 1.5,
+                                paddingBottom: 1.5
                             }}>
                                 <ImageGames api={product} />
                                 <Typography
@@ -125,16 +124,10 @@ export function ResponsiveDrawer(props) {
                                 >
                                     {product.name}  
                                 </Typography>
-                                <MoneyDiv>
                                 <Money variant="button" >{product.price}</Money>
                                 <Box sx={{ flexGrow: 1 }} />
-                                <IconButton
-                                    color="primary"
-                                    aria-label="add to shopping cart"
-                                >
-                                    <AddShoppingCart />
-                                </IconButton>
-                                </MoneyDiv>
+                                <Button sx={{width: "90%"}} variant="contained" color="success"
+                                onClick={() => handleAddProduct(product.id)} >Comprar</Button>
                             </ProductPaper>
                         </Grid>
                     ))}

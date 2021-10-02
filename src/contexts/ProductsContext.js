@@ -1,11 +1,19 @@
 import axios from "axios";
-import { createContext, useEffect, useState } from "react";
+import {
+    createContext,
+    memo,
+    useCallback,
+    useEffect,
+    useMemo,
+    useState,
+} from "react";
 import { useQuery } from "react-query";
 
 export const ProductsContext = createContext({});
 
 export const ProductsProvider = (props) => {
     const [products, setProducts] = useState([]);
+    const [temporary, setTemporary] = useState([]);
 
     const { data, error, isLoading } = useQuery(
         "products",
@@ -18,10 +26,11 @@ export const ProductsProvider = (props) => {
                             style: "currency",
                             currency: "BRL",
                         }),
-                        nameFormatted: `${product.name.substring(0, 20)}... `
                     };
                 });
+                response = productFormatted;
                 setProducts(productFormatted);
+                setTemporary(productFormatted);
             });
         },
         {
@@ -34,8 +43,18 @@ export const ProductsProvider = (props) => {
 
     if (isLoading) return <h1> Loading ...</h1>;
 
+    function searchProduct(productName) {
+        const lowerName = productName.toLowerCase();
+
+        const filteredProducts = temporary.filter((product) =>
+            product.name.toLowerCase().includes(lowerName)
+        );
+
+        setProducts(filteredProducts);
+    }
+    
     return (
-        <ProductsContext.Provider value={{ products }}>
+        <ProductsContext.Provider value={{ products, searchProduct }}>
             {props.children}
         </ProductsContext.Provider>
     );

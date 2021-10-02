@@ -1,110 +1,49 @@
-import { CartGame } from "../atoms/CartGames";
+import { useProducts } from "../../hooks/useProducts";
 
-import {
-    AppBar,
-    Box,
-    Toolbar,
-    IconButton,
-    Typography,
-    InputBase,
-    Icon,
-    Badge,
-} from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
-import MenuIcon from '@mui/icons-material/Menu';
+import { AppBar, Box, Toolbar } from "@mui/material";
 
-import { styled, alpha } from "@mui/material/styles";
 import { useDrawerResponsive } from "../../hooks/useDrawerResponsive";
-
-const Search = styled("div")(({ theme }) => ({
-    position: "relative",
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
-    "&:hover": {
-        backgroundColor: alpha(theme.palette.common.white, 0.25),
-    },
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-        marginLeft: theme.spacing(3),
-        width: "auto",
-    },
-}));
-
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-    padding: theme.spacing(0, 2),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: "inherit",
-    "& .MuiInputBase-input": {
-        padding: theme.spacing(1, 1, 1, 0),
-        // vertical padding + font size from searchIcon
-        paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-        transition: theme.transitions.create("width"),
-        width: "100%",
-        [theme.breakpoints.up("md")]: {
-            width: "20ch",
-        },
-    },
-}));
-
-const StyledBadge = styled(Badge)(({ theme }) => ({
-    "& .MuiBadge-badge": {
-        right: 18,
-    },
-}));
+import { useCart } from "../../hooks/useCart";
+import { BadgeCart } from "../organism/BadgeCart";
+import { SearchProduct } from "../organism/SearchProduct";
+import { LogoButton } from "../organism/LogoButton";
+import { MenuFilterMobile } from "../organism/MenuFilterMobile";
 
 export function SuperaAppBar() {
     const { handleDrawerToggle } = useDrawerResponsive();
+    const { searchProduct } = useProducts();
+    const { cart } = useCart();
+
+    function handleSearchProduct(productName) {
+        searchProduct(productName);
+    }
 
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static" color="transparent">
                 <Toolbar>
-                    <IconButton
+                    <MenuFilterMobile
                         color="inherit"
-                        aria-label="open drawer"
                         edge="start"
                         onClick={handleDrawerToggle}
-                        sx={{ mr: 2, display: { sm: "none" } }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
+                    />
 
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="div"
-                        sx={{ display: { xs: "none", sm: "block" } }}
-                    >
-                        SUPERA GAMES
-                    </Typography>
+                    <LogoButton />
 
                     <Box sx={{ flexGrow: 1 }} />
-                    <Search sx={{}}>
-                        <SearchIconWrapper>
-                            <SearchIcon />
-                        </SearchIconWrapper>
-                        <StyledInputBase placeholder="Procurar ..." />
-                    </Search>
+
+                    <SearchProduct
+                        placeholder="Procurar ..."
+                        onChange={(ev) => handleSearchProduct(ev.target.value)}
+                    />
+
                     <Box sx={{ flexGrow: 1 }} />
-                    <IconButton color="primary">
-                        <StyledBadge badgeContent={4} color="secondary">
-                            <Icon
-                                component={CartGame}
-                                fontSize="large"
-                                sx={{ marginRight: 3 }}
-                            />
-                        </StyledBadge>
-                    </IconButton>
+
+                    <BadgeCart
+                        badgeContent={cart.length}
+                        color="info"
+                        sx={{ marginTop: 3 }}
+                    />
                 </Toolbar>
             </AppBar>
         </Box>
