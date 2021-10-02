@@ -8,6 +8,7 @@ import {
     useState,
 } from "react";
 import { useQuery } from "react-query";
+import { CircularIndeterminate } from "../components/molecules/CircularIndeterminate";
 
 export const ProductsContext = createContext({});
 
@@ -39,9 +40,9 @@ export const ProductsProvider = (props) => {
         }
     );
 
-    if (error) return <h1> Error: {error}, try again!</h1>;
+    if (error) return <h1> Error: {error}, tente novamente!</h1>;
 
-    if (isLoading) return <h1> Loading ...</h1>;
+    if (isLoading) return <CircularIndeterminate />;
 
     function searchProduct(productName) {
         const lowerName = productName.toLowerCase();
@@ -52,7 +53,7 @@ export const ProductsProvider = (props) => {
 
         setProducts(filteredProducts);
     }
-    
+
     return (
         <ProductsContext.Provider value={{ products, searchProduct }}>
             {props.children}
