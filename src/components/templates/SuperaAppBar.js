@@ -19,46 +19,7 @@ import { styled, alpha } from "@mui/material/styles";
 import { useDrawerResponsive } from "../../hooks/useDrawerResponsive";
 import { useCart } from "../../hooks/useCart";
 import { BadgeCart } from "../organism/BadgeCart";
-
-const Search = styled("div")(({ theme }) => ({
-    position: "relative",
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
-    "&:hover": {
-        backgroundColor: alpha(theme.palette.common.white, 0.25),
-    },
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-        marginLeft: theme.spacing(3),
-        width: "auto",
-    },
-}));
-
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-    padding: theme.spacing(0, 2),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: "inherit",
-    "& .MuiInputBase-input": {
-        padding: theme.spacing(1, 1, 1, 0),
-        // vertical padding + font size from searchIcon
-        paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-        transition: theme.transitions.create("width"),
-        width: "100%",
-        [theme.breakpoints.up("md")]: {
-            width: "20ch",
-        },
-    },
-}));
+import { SearchProduct } from "../organism/SearchProduct";
 
 export function SuperaAppBar() {
     const { handleDrawerToggle } = useDrawerResponsive();
@@ -93,18 +54,14 @@ export function SuperaAppBar() {
                     </Typography>
 
                     <Box sx={{ flexGrow: 1 }} />
-                    <Search sx={{}}>
-                        <SearchIconWrapper>
-                            <SearchIcon />
-                        </SearchIconWrapper>
-                        <StyledInputBase
-                            placeholder="Procurar ..."
-                            onChange={(ev) =>
-                                handleSearchProduct(ev.target.value)
-                            }
-                        />
-                    </Search>
+
+                    <SearchProduct
+                        placeholder="Procurar ..."
+                        onChange={(ev) => handleSearchProduct(ev.target.value)}
+                    />
+
                     <Box sx={{ flexGrow: 1 }} />
+
                     <BadgeCart
                         badgeContent={cart.length}
                         color="info"
