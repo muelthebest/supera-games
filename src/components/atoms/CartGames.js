@@ -1,6 +1,7 @@
-import CartIcon from "../../assets/cart-icon.svg"
+import { Icon } from "@mui/material"
+import { ImageCart } from "./ImageCart"
 
 export const CartGame = (props) => {
-    
-    return <img src={CartIcon} alt="Carrinho de compras" {...props} />
+
+    return <Icon component={ImageCart} fontSize="large" {...props} />
 }
