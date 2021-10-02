@@ -17,6 +17,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 
 import { styled, alpha } from "@mui/material/styles";
 import { useDrawerResponsive } from "../../hooks/useDrawerResponsive";
+import { useCart } from "../../hooks/useCart";
 
 const Search = styled("div")(({ theme }) => ({
     position: "relative",
@@ -67,6 +68,8 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 export function SuperaAppBar() {
     const { handleDrawerToggle } = useDrawerResponsive();
     const { searchProduct } = useProducts();
+    const { cart } = useCart();
+
 
     function handleSearchProduct(productName) {
         searchProduct(productName);
@@ -104,7 +107,7 @@ export function SuperaAppBar() {
                     </Search>
                     <Box sx={{ flexGrow: 1 }} />
                     <StyledBadge
-                        badgeContent={4}
+                        badgeContent={cart.length}
                         color="info"
                         sx={{ marginTop: 3 }}
                     >
