@@ -1,5 +1,6 @@
 import { Toolbar } from "@mui/material";
 import { Box, styled } from "@mui/system";
+import { useProducts } from "../../hooks/useProducts";
 import { DrawerPermanent } from "../molecules/DrawerPermanent";
 import { DrawerTemporary } from "../molecules/DrawerTemporary";
 
@@ -9,14 +10,23 @@ const BoxDrawer = styled(Box)(({ theme }) => ({
     zIndex: 100,
 }));
 
-const drawer = (
-    <Box>
-        <Toolbar />
-        <button>oi</button>
-    </Box>
-);
-
 export const DrawerResponsive = (props) => {
+    const { filterProducts } = useProducts();
+
+    function handleFilterProducts(type, queryParam) {
+        filterProducts(type, queryParam);
+    }
+
+    const drawer = (
+        <Box>
+            <Toolbar />
+            <h1>Filtragem</h1>
+            <button onClick={() => handleFilterProducts("price", "desc")}>
+                oi
+            </button>
+        </Box>
+    );
+
     return (
         <BoxDrawer
             component="nav"
