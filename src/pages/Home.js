@@ -1,16 +1,14 @@
-import { Route, BrowserRouter, Switch } from "react-router-dom";
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import { MainContent } from "../components/templates/MainContent";
 import { SuperaAppBar } from "../components/templates/SuperaAppBar";
 
 export function Home() {
     return (
         <>
-            <BrowserRouter>
+            <Router>
                 <Route path="/" component={SuperaAppBar} />
-                <Switch>
-                    <Route exact path="/" component={MainContent} />
-                </Switch>
-            </BrowserRouter>
+                <Route exact path="/" component={MainContent} />
+            </Router>
         </>
     );
 }
