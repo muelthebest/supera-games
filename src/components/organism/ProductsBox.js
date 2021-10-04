@@ -1,9 +1,10 @@
 import { styled } from "@mui/material/styles";
 
-import { Grid } from "@mui/material";
+import { Grid, Box } from "@mui/material";
 import { useProducts } from "../../hooks/useProducts";
 
 import { ProductGrid } from "../molecules/ProductGrid";
+import { CircularIndeterminate } from "../molecules/CircularIndeterminate";
 
 const GridContainer = styled(Grid)(({ theme }) => ({
     padding: 0,
@@ -12,14 +13,18 @@ const GridContainer = styled(Grid)(({ theme }) => ({
 }));
 
 export const ProductsBox = () => {
-    const { products } = useProducts();
+    const { products, isLoading } = useProducts();
 
     return (
         <>
             <GridContainer container spacing={3}>
-                {products.map((product) => (
-                    <ProductGrid product={product} key={product.id} />
-                ))}
+                {products.map((product) =>
+                    !isLoading ? (
+                        <ProductGrid product={product} key={product.id} />
+                    ) : (
+                        <CircularIndeterminate key={product.id} />
+                    )
+                )}
             </GridContainer>
         </>
     );
