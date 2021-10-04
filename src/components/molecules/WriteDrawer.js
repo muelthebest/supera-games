@@ -7,7 +7,7 @@ export const WriteDrawer = () => {
     return (
         <>
             <Toolbar />
-            <Toolbar />
+
             <List
                 sx={{
                     width: "100%",

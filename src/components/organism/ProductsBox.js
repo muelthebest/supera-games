@@ -5,6 +5,7 @@ import { useProducts } from "../../hooks/useProducts";
 
 import { ProductGrid } from "../molecules/ProductGrid";
 import { CircularIndeterminate } from "../molecules/CircularIndeterminate";
+import { Box } from "@mui/system";
 
 const GridContainer = styled(Grid)(({ theme }) => ({
     padding: 0,
