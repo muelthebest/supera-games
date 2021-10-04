@@ -1,12 +1,5 @@
 import axios from "axios";
-import {
-    createContext,
-    memo,
-    useCallback,
-    useEffect,
-    useMemo,
-    useState,
-} from "react";
+import { createContext, useState } from "react";
 import { useQuery } from "react-query";
 
 export const ProductsContext = createContext({});
@@ -15,22 +8,25 @@ export const ProductsProvider = (props) => {
     const [products, setProducts] = useState([]);
     const [temporary, setTemporary] = useState([]);
 
-    const { data, error, isLoading } = useQuery(
+    function formatMoney(product) {
+        return product.data.map((product) => {
+            return {
+                ...product,
+                price: product.price.toLocaleString("pt-br", {
+                    style: "currency",
+                    currency: "BRL",
+                }),
+            };
+        });
+    }
+
+    const { error, isLoading } = useQuery(
         "products",
         () => {
             return axios("http://localhost:3001/products").then((response) => {
-                const productFormatted = response.data.map((product) => {
-                    return {
-                        ...product,
-                        price: product.price.toLocaleString("pt-br", {
-                            style: "currency",
-                            currency: "BRL",
-                        }),
-                    };
-                });
-                response = productFormatted;
-                setProducts(productFormatted);
-                setTemporary(productFormatted);
+                const productsFormatted = formatMoney(response);
+                setProducts(productsFormatted);
+                setTemporary(productsFormatted);
             });
         },
         {
@@ -39,11 +35,11 @@ export const ProductsProvider = (props) => {
         }
     );
 
-    if (error) return <h1> Error: {error}, try again!</h1>;
+    if (error) {
+        return `o problema foi ${error}, tente novamente`;
+    }
 
-    if (isLoading) return <h1> Loading ...</h1>;
-
-    function searchProduct(productName) {
+    const searchProduct = (productName) => {
         const lowerName = productName.toLowerCase();
 
         const filteredProducts = temporary.filter((product) =>
@@ -51,10 +47,34 @@ export const ProductsProvider = (props) => {
         );
 
         setProducts(filteredProducts);
+    };
+
+    async function filterNameProducts(type, queryParam) {
+        await axios(
+            `http://localhost:3001/products/?_sort=${type}&_order=${queryParam}`
+        ).then((response) => {
+            setProducts(formatMoney(response));
+        });
     }
-    
+
+    async function filterSliceProducts(type, min, max) {
+        await axios(
+            `http://localhost:3001/products?_sort=${type}&_order=desc${type}_gte=${min}&${type}_lte=${max}`
+        ).then((response) => {
+            setProducts(formatMoney(response));
+        });
+    }
+
     return (
-        <ProductsContext.Provider value={{ products, searchProduct }}>
+        <ProductsContext.Provider
+            value={{
+                products,
+                searchProduct,
+                isLoading,
+                filterNameProducts,
+                filterSliceProducts,
+            }}
+        >
             {props.children}
         </ProductsContext.Provider>
     );

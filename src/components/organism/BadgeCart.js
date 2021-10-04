@@ -1,7 +1,6 @@
 import { styled } from "@mui/material/styles";
 
-import { Badge, Icon, IconButton } from "@mui/material";
-import { CartGame } from "../atoms/CartGames";
+import { Badge } from "@mui/material";
 import { CartButton } from "../molecules/CartButton";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -13,10 +12,8 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 export const BadgeCart = (props) => {
     return (
         <>
-            <StyledBadge
-                {...props}
-            >
-            <CartButton color="primary" sx={{ marginRight: 2 }} />
+            <StyledBadge {...props}>
+                <CartButton color="primary" sx={{ marginRight: 2 }} />
             </StyledBadge>
         </>
     );
