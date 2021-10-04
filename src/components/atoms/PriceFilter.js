@@ -29,7 +29,7 @@ export const PriceFilter = () => {
             <ListItemButton
                 sx={{ pl: 4 }}
                 onClick={() =>
-                    handleFilterSliceProducts("price", "0", `${max}`, "desc")
+                    handleFilterSliceProducts("price", "0", `${max}`, "asc")
                 }
             >
                 <ListItemIcon>
