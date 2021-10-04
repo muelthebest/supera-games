@@ -1,6 +1,6 @@
 import { styled } from "@mui/material/styles";
 
-import { Grid, Box } from "@mui/material";
+import { Grid } from "@mui/material";
 import { useProducts } from "../../hooks/useProducts";
 
 import { ProductGrid } from "../molecules/ProductGrid";

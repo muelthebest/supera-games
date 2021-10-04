@@ -1,4 +1,4 @@
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { Route, BrowserRouter as Router } from "react-router-dom";
 import { MainContent } from "../components/templates/MainContent";
 import { SuperaAppBar } from "../components/templates/SuperaAppBar";
 

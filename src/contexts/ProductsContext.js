@@ -1,7 +1,6 @@
 import axios from "axios";
 import { createContext, useState } from "react";
 import { useQuery } from "react-query";
-import { useParams } from "react-router";
 
 export const ProductsContext = createContext({});
 

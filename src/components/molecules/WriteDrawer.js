@@ -1,7 +1,7 @@
-import { List, ListSubheader, Toolbar, Typography } from "@mui/material";
-import { Box } from "@mui/system";
+import { List, ListSubheader, Toolbar } from "@mui/material";
 import { AlphabetFilter } from "../atoms/AlphabetFilter";
 import { PriceFilter } from "../atoms/PriceFilter";
+import { ScoreFilter } from "../atoms/ScoreFilter";
 
 export const WriteDrawer = () => {
     return (
@@ -24,6 +24,7 @@ export const WriteDrawer = () => {
             >
                 <AlphabetFilter />
                 <PriceFilter />
+                <ScoreFilter />
             </List>
         </>
     );

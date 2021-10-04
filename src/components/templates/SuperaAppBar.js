@@ -9,7 +9,6 @@ import { SearchProduct } from "../organism/SearchProduct";
 import { LogoButton } from "../organism/LogoButton";
 import { MenuFilterMobile } from "../organism/MenuFilterMobile";
 import { BoxGrow } from "../atoms/BoxGrow";
-import { styled } from "@mui/system";
 
 export function SuperaAppBar() {
     const { handleDrawerToggle } = useDrawerResponsive();
