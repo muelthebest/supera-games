@@ -59,7 +59,7 @@ export const ProductsProvider = (props) => {
 
     async function filterSliceProducts(type, min, max) {
         await axios(
-            `http://localhost:3001/products?${type}_gte=${min}&${type}_lte=${max}`
+            `http://localhost:3001/products?_sort=${type}&_order=desc${type}_gte=${min}&${type}_lte=${max}`
         ).then((response) => {
             setProducts(formatMoney(response));
         });
