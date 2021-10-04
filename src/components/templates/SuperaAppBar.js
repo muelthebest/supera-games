@@ -9,6 +9,7 @@ import { SearchProduct } from "../organism/SearchProduct";
 import { LogoButton } from "../organism/LogoButton";
 import { MenuFilterMobile } from "../organism/MenuFilterMobile";
 import { BoxGrow } from "../atoms/BoxGrow";
+import { styled } from "@mui/system";
 
 export function SuperaAppBar() {
     const { handleDrawerToggle } = useDrawerResponsive();
@@ -19,8 +20,14 @@ export function SuperaAppBar() {
         searchProduct(productName);
     }
 
+    const AppBox = styled(Box)(({ theme }) => ({
+        flexGrow: 1,
+        zIndex: 200,
+        position: "relative",
+    }));
+
     return (
-        <Box sx={{ flexGrow: 1 }}>
+        <AppBox>
             <AppBar position="static" color="transparent">
                 <Toolbar>
                     <MenuFilterMobile
@@ -47,6 +54,6 @@ export function SuperaAppBar() {
                     />
                 </Toolbar>
             </AppBar>
-        </Box>
+        </AppBox>
     );
 }

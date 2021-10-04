@@ -6,14 +6,14 @@ import { DrawerTemporary } from "../molecules/DrawerTemporary";
 const drawerWidth = 240;
 
 const BoxDrawer = styled(Box)(({ theme }) => ({
-    zIndex: -999,
+    zIndex: 100,
 }));
 
 const drawer = (
-    <div>
+    <Box>
         <Toolbar />
-        <h1>Teste</h1>
-    </div>
+        <button>oi</button>
+    </Box>
 );
 
 export const DrawerResponsive = (props) => {
