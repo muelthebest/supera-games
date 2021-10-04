@@ -1,6 +1,7 @@
 import axios from "axios";
 import { createContext, useState } from "react";
 import { useQuery } from "react-query";
+import { useParams } from "react-router";
 
 export const ProductsContext = createContext({});
 
@@ -49,19 +50,31 @@ export const ProductsProvider = (props) => {
         setProducts(filteredProducts);
     };
 
-    async function filterProducts(type, queryParam) {
+    async function filterNameProducts(type, queryParam) {
         await axios(
             `http://localhost:3001/products/?_sort=${type}&_order=${queryParam}`
         ).then((response) => {
-            const productsFormatted = formatMoney(response);
+            setProducts(formatMoney(response));
+        });
+    }
 
-            setProducts(productsFormatted);
+    async function filterSliceProducts(type, min, max) {
+        await axios(
+            `http://localhost:3001/products?${type}_gte=${min}&${type}_lte=${max}`
+        ).then((response) => {
+            setProducts(formatMoney(response));
         });
     }
 
     return (
         <ProductsContext.Provider
-            value={{ products, searchProduct, isLoading, filterProducts }}
+            value={{
+                products,
+                searchProduct,
+                isLoading,
+                filterNameProducts,
+                filterSliceProducts,
+            }}
         >
             {props.children}
         </ProductsContext.Provider>
