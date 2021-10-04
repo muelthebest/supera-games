@@ -17,23 +17,24 @@ export const ScoreFilter = () => {
     const [show, setShow] = useState(false);
     const { filterSliceProducts } = useProducts();
 
-    function handleFilterSliceProducts(type, min, max) {
-        filterSliceProducts(type, min, max);
+    function handleFilterSliceProducts(type, min, max, order) {
+        filterSliceProducts(type, min, max, order);
     }
 
     const handleClick = () => {
         setShow(!show);
     };
 
-    const createStarList = (starsMax, starsNum) => (
+    const createStarList = (starsMax, starsNum, order) => (
         <>
             <ListItemButton
                 sx={{ pl: 4 }}
                 onClick={() =>
                     handleFilterSliceProducts(
                         "score",
-                        `${starsMax - 100}`,
-                        `${starsMax}`
+                        `${0}`,
+                        `${starsMax}`,
+                        "desc"
                     )
                 }
             >
@@ -41,7 +42,9 @@ export const ScoreFilter = () => {
                     <StarIcon />
                 </ListItemIcon>
                 <ListItemText
-                    primary={`de ${starsNum - 1} a ${starsNum} estrelas`}
+                    primary={`até  ${starsNum} ${
+                        starsNum === 1 ? "estrela" : "estrelas"
+                    } `}
                 />
             </ListItemButton>
         </>
