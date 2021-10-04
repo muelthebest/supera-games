@@ -20,14 +20,8 @@ export function SuperaAppBar() {
         searchProduct(productName);
     }
 
-    const AppBox = styled(Box)(({ theme }) => ({
-        flexGrow: 1,
-        zIndex: 200,
-        position: "relative",
-    }));
-
     return (
-        <AppBox>
+        <Box sx={{ flexGrow: 1, zIndex: 200, position: "relative" }}>
             <AppBar position="static" color="transparent">
                 <Toolbar>
                     <MenuFilterMobile
@@ -54,6 +48,6 @@ export function SuperaAppBar() {
                     />
                 </Toolbar>
             </AppBar>
-        </AppBox>
+        </Box>
     );
 }
