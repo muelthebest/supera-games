@@ -1,6 +1,6 @@
 import { styled } from "@mui/material/styles";
 
-import { Grid, Paper } from "@mui/material";
+import { Grid, Paper, Rating } from "@mui/material";
 import { ImageGames } from "../atoms/ImageGames";
 import { ButtonBuy } from "../atoms/ButtonBuy";
 import { useCart } from "../../hooks/useCart";
@@ -35,6 +35,13 @@ export const ProductGrid = (props) => {
                 <ImageGames api={props.product} />
 
                 <ProductName name={props.product.name} />
+
+                <Rating
+                    name="read-only"
+                    value={props.product.score / 100}
+                    precision={0.5}
+                    readOnly
+                />
 
                 <Money>{props.product.price}</Money>
 

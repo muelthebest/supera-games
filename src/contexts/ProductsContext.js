@@ -57,9 +57,9 @@ export const ProductsProvider = (props) => {
         });
     }
 
-    async function filterSliceProducts(type, min, max) {
+    async function filterSliceProducts(type, min, max, order) {
         await axios(
-            `http://localhost:3001/products?_sort=${type}&_order=desc${type}_gte=${min}&${type}_lte=${max}`
+            `http://localhost:3001/products?_sort=${type}&_order=${order}&${type}_gte=${min}&${type}_lte=${max}`
         ).then((response) => {
             setProducts(formatMoney(response));
         });
