@@ -13,7 +13,7 @@ import { BoxGrow } from "../atoms/BoxGrow";
 export function SuperaAppBar() {
     const { handleDrawerToggle } = useDrawerResponsive();
     const { searchProduct } = useProducts();
-    const { cart } = useCart();
+    const { cart, totalItems } = useCart();
 
     function handleSearchProduct(productName) {
         searchProduct(productName);
@@ -21,14 +21,7 @@ export function SuperaAppBar() {
 
     return (
         <Box sx={{ flexGrow: 1, zIndex: 200, position: "relative" }}>
-            <AppBar
-                position="fixed"
-                color="inherit"
-                sx={{
-                    width: { sm: `calc(100% - ${240}px)` },
-                    ml: { sm: `${240}px` },
-                }}
-            >
+            <AppBar position="fixed" color="inherit">
                 <Toolbar>
                     <MenuFilterMobile
                         color="inherit"
@@ -48,7 +41,7 @@ export function SuperaAppBar() {
                     <BoxGrow />
 
                     <BadgeCart
-                        badgeContent={cart.length}
+                        badgeContent={totalItems > 0 ? totalItems : "0"}
                         color="info"
                         sx={{ marginTop: 3 }}
                     />
