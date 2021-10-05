@@ -5,6 +5,7 @@ import { ProductsProvider } from "./contexts/ProductsContext";
 import { CartProvider } from "./contexts/CartContext";
 import { DrawerProvider } from "./contexts/DrawerContext";
 import { ModalProvider } from "./contexts/ModalContext";
+import { PageRoutes } from "./routes";
 
 const queryClient = new QueryClient();
 
@@ -17,7 +18,7 @@ function App() {
                     <CartProvider>
                         <DrawerProvider>
                             <ModalProvider>
-                                <Home />
+                                <PageRoutes />
                             </ModalProvider>
                         </DrawerProvider>
                     </CartProvider>
