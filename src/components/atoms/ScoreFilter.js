@@ -5,7 +5,6 @@ import {
     ListItemIcon,
     ListItemText,
 } from "@mui/material";
-import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderPurple500Icon from "@mui/icons-material/StarBorderPurple500";
 import ExpandLess from "@mui/icons-material/ExpandLess";
@@ -42,7 +41,7 @@ export const ScoreFilter = () => {
                     <StarIcon />
                 </ListItemIcon>
                 <ListItemText
-                    primary={`até  ${starsNum} ${
+                    primary={`Até  ${starsNum} ${
                         starsNum === 1 ? "estrela" : "estrelas"
                     } `}
                 />
