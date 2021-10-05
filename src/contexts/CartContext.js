@@ -46,7 +46,7 @@ export const CartProvider = (props) => {
         return sumTotal;
     }, 0);
 
-    async function addProduct(productId) {
+    const addProduct = async (productId) => {
         try {
             const { data: products } = await axios(
                 `http://localhost:3001/products/${productId}`
@@ -114,13 +114,30 @@ export const CartProvider = (props) => {
         } catch (e) {
             toastMessage(toast.error, "Ocorreu um erro, tente novamente!");
         }
-    }
+    };
+
+    const removeProduct = (productId) => {
+        try {
+            const updatedCart = cart.filter(
+                (cartItem) => cartItem.id !== productId
+            );
+
+            setCart(updatedCart);
+            localStorage.setItem(
+                "@superaGames:cart",
+                JSON.stringify(updatedCart)
+            );
+        } catch (e) {
+            toastMessage(toast.error, "Ocorreu um erro, tente novamente");
+        }
+    };
 
     return (
         <CartContext.Provider
             value={{
                 cart,
                 addProduct,
+                removeProduct,
                 totalItems,
                 totalFreight,
                 totalPrice,
