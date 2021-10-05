@@ -13,7 +13,7 @@ import { BoxGrow } from "../atoms/BoxGrow";
 export function SuperaAppBar() {
     const { handleDrawerToggle } = useDrawerResponsive();
     const { searchProduct } = useProducts();
-    const { cart, totalItems } = useCart();
+    const { totalItems } = useCart();
 
     function handleSearchProduct(productName) {
         searchProduct(productName);
