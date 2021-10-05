@@ -16,8 +16,8 @@ export const PriceFilter = () => {
     const [show, setShow] = useState(false);
     const { filterSliceProducts } = useProducts();
 
-    function handleFilterSliceProducts(type, min, max) {
-        filterSliceProducts(type, min, max);
+    function handleFilterSliceProducts(type, min, max, order) {
+        filterSliceProducts(type, min, max, order);
     }
 
     const handleClick = () => {
@@ -29,7 +29,7 @@ export const PriceFilter = () => {
             <ListItemButton
                 sx={{ pl: 4 }}
                 onClick={() =>
-                    handleFilterSliceProducts("price", "0", `${max}`)
+                    handleFilterSliceProducts("price", "0", `${max}`, "asc")
                 }
             >
                 <ListItemIcon>

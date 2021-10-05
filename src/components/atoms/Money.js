@@ -9,7 +9,9 @@ const MoneyFormat = styled(Typography)(({ theme }) => ({
 export const Money = (props) => {
     return (
         <>
-            <MoneyFormat variant="button">{props.children}</MoneyFormat>
+            <MoneyFormat variant="button" {...props}>
+                {props.children}
+            </MoneyFormat>
         </>
     );
 };

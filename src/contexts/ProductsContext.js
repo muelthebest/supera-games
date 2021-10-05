@@ -23,7 +23,9 @@ export const ProductsProvider = (props) => {
     const { error, isLoading } = useQuery(
         "products",
         () => {
-            return axios("http://localhost:3001/products").then((response) => {
+            return axios(
+                "http://localhost:3001/products?_sort=price&_order=asc"
+            ).then((response) => {
                 const productsFormatted = formatMoney(response);
                 setProducts(productsFormatted);
                 setTemporary(productsFormatted);
@@ -51,15 +53,15 @@ export const ProductsProvider = (props) => {
 
     async function filterNameProducts(type, queryParam) {
         await axios(
-            `http://localhost:3001/products/?_sort=${type}&_order=${queryParam}`
+            `http://localhost:3001/products?_sort=${type}&_order=${queryParam}`
         ).then((response) => {
             setProducts(formatMoney(response));
         });
     }
 
-    async function filterSliceProducts(type, min, max) {
+    async function filterSliceProducts(type, min, max, order) {
         await axios(
-            `http://localhost:3001/products?_sort=${type}&_order=desc${type}_gte=${min}&${type}_lte=${max}`
+            `http://localhost:3001/products?_sort=${type}&_order=${order}&${type}_gte=${min}&${type}_lte=${max}`
         ).then((response) => {
             setProducts(formatMoney(response));
         });
