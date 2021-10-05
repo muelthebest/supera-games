@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { ProductsProvider } from "./contexts/ProductsContext";
 import { CartProvider } from "./contexts/CartContext";
 import { DrawerProvider } from "./contexts/DrawerContext";
+import { ModalProvider } from "./contexts/ModalContext";
 
 const queryClient = new QueryClient();
 
@@ -15,7 +16,9 @@ function App() {
                 <ProductsProvider>
                     <CartProvider>
                         <DrawerProvider>
-                            <Home />
+                            <ModalProvider>
+                                <Home />
+                            </ModalProvider>
                         </DrawerProvider>
                     </CartProvider>
                 </ProductsProvider>
