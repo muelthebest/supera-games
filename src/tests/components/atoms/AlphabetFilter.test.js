@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { AlphabetFilter } from "../../../components/atoms/AlphabetFilter";
 
 describe("AlphabetFilter component", () => {
-    test("deve mudar o estado de show para false ou true", () => {
+    test("verifica se acontece oque esperado ao apertar o botão", () => {
         const { getByRole, getByText } = render(<AlphabetFilter />);
 
         const buttonModify = getByRole("button", {
