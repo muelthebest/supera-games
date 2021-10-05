@@ -16,6 +16,13 @@ export const CartProvider = (props) => {
         return [];
     });
 
+    const toastMessage = (typeToast, message) => {
+        return typeToast(message, {
+            position: toast.POSITION.TOP_LEFT,
+            autoClose: 1300,
+        });
+    };
+
     const totalItems = cart.reduce((sumTotal, product) => {
         sumTotal += product.quantity;
         return sumTotal;
@@ -61,9 +68,7 @@ export const CartProvider = (props) => {
                         },
                     ])
                 );
-                toast.success("Item adicionado ao carrinho!", {
-                    position: toast.POSITION.TOP_LEFT,
-                });
+                toastMessage(toast.success, "Item adicionado ao carrinho!");
                 return;
             }
             const updatedCart = cart.map((product) =>
@@ -79,14 +84,11 @@ export const CartProvider = (props) => {
                 "@superaGames:cart",
                 JSON.stringify(updatedCart)
             );
-            toast.success("Item adicionado ao carrinho!", {
-                position: toast.POSITION.TOP_LEFT,
-            });
+            toastMessage(toast.success, "Item adicionado ao carrinho!");
+
             return;
         } catch (e) {
-            toast.error("Ocorreu um erro, tente novamente!", {
-                position: toast.POSITION.TOP_LEFT,
-            });
+            toastMessage(toast.error, "Ocorreu um erro, tente novamente!");
         }
     }
 
