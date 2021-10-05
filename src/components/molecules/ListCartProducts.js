@@ -7,6 +7,7 @@ import {
     Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
+import { ButtonDelete } from "../atoms/ButtonDelete";
 import { Money } from "../atoms/Money";
 
 export const ListCartProducts = (props) => {
@@ -64,6 +65,7 @@ export const ListCartProducts = (props) => {
                                         currency: "BRL",
                                     })}
                                 </Money>
+                                <ButtonDelete id={props.product.id} />
                             </Box>
                         </Box>
                     }

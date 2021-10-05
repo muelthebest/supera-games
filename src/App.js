@@ -1,4 +1,3 @@
-import { Home } from "./pages/Home";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { toast } from "react-toastify";
 import { ProductsProvider } from "./contexts/ProductsContext";
