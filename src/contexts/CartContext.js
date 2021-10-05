@@ -23,6 +23,24 @@ export const CartProvider = (props) => {
         });
     };
 
+    const parcialPrice = cart.reduce((sumTotal, product) => {
+        sumTotal += product.price * product.quantity;
+        return sumTotal;
+    }, 0);
+
+    const totalFreight = cart.reduce((sumTotal, product) => {
+        sumTotal += product.freight;
+        if (parcialPrice >= 250) {
+            return 0;
+        }
+        return sumTotal;
+    }, 0);
+
+    const totalPrice = cart.reduce((sumTotal, product) => {
+        sumTotal = parcialPrice + totalFreight;
+        return sumTotal;
+    }, 0);
+
     const totalItems = cart.reduce((sumTotal, product) => {
         sumTotal += product.quantity;
         return sumTotal;
@@ -50,6 +68,7 @@ export const CartProvider = (props) => {
                             style: "currency",
                             currency: "BRL",
                         }),
+                        freight: 10,
                     },
                 ]);
                 localStorage.setItem(
@@ -65,6 +84,7 @@ export const CartProvider = (props) => {
                                 style: "currency",
                                 currency: "BRL",
                             }),
+                            freight: 10,
                         },
                     ])
                 );
@@ -76,6 +96,10 @@ export const CartProvider = (props) => {
                     ? {
                           ...product,
                           quantity: Number(product.quantity) + 1,
+                          freight:
+                              parcialPrice >= 250
+                                  ? 0
+                                  : Number(product.freight) + 10,
                       }
                     : product
             );
@@ -93,7 +117,16 @@ export const CartProvider = (props) => {
     }
 
     return (
-        <CartContext.Provider value={{ cart, addProduct, totalItems }}>
+        <CartContext.Provider
+            value={{
+                cart,
+                addProduct,
+                totalItems,
+                totalFreight,
+                totalPrice,
+                parcialPrice,
+            }}
+        >
             {props.children}
         </CartContext.Provider>
     );
