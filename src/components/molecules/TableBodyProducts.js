@@ -10,7 +10,7 @@ export const TableBodyProducts = (props) => {
                     <TableRow key={product.id}>
                         <TableCell>
                             <AvatarProduct
-                                size={props.sizeImage}
+                                size={props.size}
                                 product={product}
                             />
                         </TableCell>
