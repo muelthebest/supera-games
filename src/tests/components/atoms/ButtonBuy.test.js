@@ -1,10 +1,16 @@
 import { render } from "@testing-library/react";
 import { ButtonBuy } from "../../../components/atoms/ButtonBuy";
+import userEvent from "@testing-library/user-event";
 
 describe("ButtonBuy component", () => {
     test("persistência do retorno do component", () => {
-        const { getByText } = render(<ButtonBuy />);
+        let test = 1;
+        const { getByRole } = render(<ButtonBuy onClick={() => (test += 1)} />);
+        const buttonModify = getByRole("button", {
+            name: "Comprar",
+        });
+        userEvent.click(buttonModify);
 
-        getByText("Comprar");
+        expect(test).toEqual(2);
     });
 });
