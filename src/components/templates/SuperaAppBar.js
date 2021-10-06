@@ -29,7 +29,7 @@ export function SuperaAppBar() {
                         onClick={handleDrawerToggle}
                     />
 
-                    <LogoButton />
+                    <LogoButton href="/" />
 
                     <BoxGrow />
 
