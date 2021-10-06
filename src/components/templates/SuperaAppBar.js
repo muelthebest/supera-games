@@ -26,7 +26,7 @@ export function SuperaAppBar() {
                     <MenuFilterMobile
                         color="inherit"
                         edge="start"
-                        onClick={handleDrawerToggle}
+       +                 onClick={handleDrawerToggle}
                     />
 
                     <LogoButton href="/" />
