@@ -19,7 +19,6 @@ const ProductPaper = styled(Paper)(({ theme }) => ({
 
 export const ProductGrid = (props) => {
     const { addProduct } = useCart();
-
     function handleAddProduct(productId) {
         addProduct(productId);
     }
