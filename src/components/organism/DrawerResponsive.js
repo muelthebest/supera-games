@@ -11,7 +11,7 @@ const BoxDrawer = styled(Box)(({ theme }) => ({
     zIndex: 100,
 }));
 
-export const DrawerResponsive = (props) => {
+export const DrawerResponsive = () => {
     return (
         <BoxDrawer
             component="nav"

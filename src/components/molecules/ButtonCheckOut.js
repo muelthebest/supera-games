@@ -7,6 +7,7 @@ export const ButtonCheckOut = (props) => {
             type="submit"
             variant="outlined"
             color="primary"
+            {...props}
         >
             {props.children}
         </Button>
