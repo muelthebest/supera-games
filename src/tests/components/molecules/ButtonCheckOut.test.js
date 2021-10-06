@@ -1,13 +1,17 @@
 import { render } from "@testing-library/react";
-import { ButtonBuy } from "../../../components/atoms/ButtonBuy";
+import { ButtonCheckOut } from "../../../components/molecules/ButtonCheckOut";
 import userEvent from "@testing-library/user-event";
 
-describe("ButtonBuy component", () => {
+describe("ButtonCheckOut component", () => {
     test("persistência do retorno do component", () => {
         let test = 1;
-        const { getByRole } = render(<ButtonBuy onClick={() => (test += 1)} />);
+        const { getByRole } = render(
+            <ButtonCheckOut onClick={() => (test += 1)}>
+                Finalizar Compra
+            </ButtonCheckOut>
+        );
         const buttonModify = getByRole("button", {
-            name: "Comprar",
+            name: "Finalizar Compra",
         });
         userEvent.click(buttonModify);
 

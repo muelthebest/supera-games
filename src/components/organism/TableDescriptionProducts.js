@@ -1,17 +1,5 @@
-import {
-    Avatar,
-    Paper,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableFooter,
-    TableHead,
-    TableRow,
-    Typography,
-} from "@mui/material";
+import { Paper, Table, TableContainer } from "@mui/material";
 import { useCart } from "../../hooks/useCart";
-import { Money } from "../atoms/Money";
 import { TableBodyProducts } from "../molecules/TableBodyProducts";
 import { TableCheckoutProducts } from "../molecules/TableCheckoutProducts";
 import { TableHeadProducts } from "../molecules/TableHeadProducts";
