@@ -1,13 +1,6 @@
-import {
-    Avatar,
-    TableBody,
-    TableCell,
-    TableRow,
-    Typography,
-} from "@mui/material";
-import { AvatarProduct } from "../atoms/AvatarProduct";
-import { Money } from "../atoms/Money";
+import { TableBody, TableCell, TableRow, Typography } from "@mui/material";
 import { MoneyFormatted } from "../atoms/MoneyFormatted";
+import { AvatarProduct } from "../atoms/AvatarProduct";
 
 export const TableBodyProducts = (props) => {
     return (
@@ -17,7 +10,7 @@ export const TableBodyProducts = (props) => {
                     <TableRow key={product.id}>
                         <TableCell>
                             <AvatarProduct
-                                size={props.size}
+                                size={props.sizeImage}
                                 product={product}
                             />
                         </TableCell>
