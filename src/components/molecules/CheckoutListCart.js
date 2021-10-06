@@ -49,7 +49,7 @@ export const CheckoutListCart = () => {
                         </Box>
                     }
                 />
-                <Button variant="contained" color="info">
+                <Button href="/form-final" variant="contained" color="info">
                     Finalizar Pedido
                 </Button>
             </ListItem>
