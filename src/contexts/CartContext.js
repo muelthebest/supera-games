@@ -136,12 +136,14 @@ export const CartProvider = (props) => {
         <CartContext.Provider
             value={{
                 cart,
+                setCart,
                 addProduct,
                 removeProduct,
                 totalItems,
                 totalFreight,
                 totalPrice,
                 parcialPrice,
+                toastMessage,
             }}
         >
             {props.children}
