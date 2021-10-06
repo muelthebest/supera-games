@@ -7,8 +7,11 @@ import {
 } from "react-router-dom";
 import { Home } from "../pages/Home";
 import { FormularioFinal } from "../pages/FormularioFinal";
+import { useCart } from "../hooks/useCart";
 
 export const PageRoutes = () => {
+    const { cart } = useCart();
+
     return (
         <Router>
             <Route path="/" component={SuperaAppBar} />
@@ -16,7 +19,17 @@ export const PageRoutes = () => {
             <Switch>
                 <Route exact path="/" component={Home} />
 
-                <Route exact path="/form-final" component={FormularioFinal} />
+                <Route exact path="/form-final" component={FormularioFinal}>
+                    {cart.length === 0 ? (
+                        <Redirect to="/" />
+                    ) : (
+                        <Route
+                            exact
+                            path="/form-final"
+                            component={FormularioFinal}
+                        />
+                    )}
+                </Route>
 
                 <Route exact path="*" component={Home}>
                     <Redirect to="/" />
