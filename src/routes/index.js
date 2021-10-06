@@ -6,7 +6,7 @@ import {
     Redirect,
 } from "react-router-dom";
 import { Home } from "../pages/Home";
-import { FormularioFinal } from "../pages/FormularioFinal";
+import { FinalForm } from "../pages/FinalForm";
 import { useCart } from "../hooks/useCart";
 
 export const PageRoutes = () => {
@@ -19,15 +19,11 @@ export const PageRoutes = () => {
             <Switch>
                 <Route exact path="/" component={Home} />
 
-                <Route exact path="/form-final" component={FormularioFinal}>
+                <Route exact path="/form-final" component={FinalForm}>
                     {cart.length === 0 ? (
                         <Redirect to="/" />
                     ) : (
-                        <Route
-                            exact
-                            path="/form-final"
-                            component={FormularioFinal}
-                        />
+                        <Route exact path="/form-final" component={FinalForm} />
                     )}
                 </Route>
 
