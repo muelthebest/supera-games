@@ -74,7 +74,7 @@ export const ProductsProvider = (props) => {
 
     async function filterSliceProducts(type, min, max, order) {
         await axios(
-            `http://localhost:8082/v1/products/${type}?sort=${type},${order}`,
+            `http://localhost:8082/v1/products/${type}?max=${max}&min=${min}&sort=${type},${order}`,
             {
                 headers: {
                     Authorization: token,

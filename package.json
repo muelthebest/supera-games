@@ -1,5 +1,5 @@
 {
-  "name": "supera-games",
+  "name": "superagames",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -60,5 +60,7 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  }
+  },
+  "keywords": [],
+  "description": ""
 }
